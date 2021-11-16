@@ -3,7 +3,7 @@
 #### Project: TxGISday2021
 #### Available at: https://github/abuabara/TxGISday2021
 
-load("/Users/alexander/Library/Mobile Documents/com~apple~CloudDocs/TAMU/Teaching/2020 TxGISday/Tue_R/TxGISday2020_Spatial_Analysis_in_R .RData")
+# load("/Users/alexander/Library/Mobile Documents/com~apple~CloudDocs/TAMU/Teaching/2020 TxGISday/Tue_R/TxGISday2020_Spatial_Analysis_in_R .RData")
 setwd("/Users/alexander/Documents/GitHub/TxGIS-Day-2021/")
 
 ###### RASTER ######
