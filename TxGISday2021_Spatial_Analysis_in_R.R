@@ -3,6 +3,7 @@
 #### Project: TxGISday2021
 #### Available at: https://github/abuabara/TxGISday2021
 
+load("/Users/alexander/Library/Mobile Documents/com~apple~CloudDocs/TAMU/Teaching/2020 TxGISday/Tue_R/TxGISday2020_Spatial_Analysis_in_R .RData")
 setwd("/Users/alexander/Documents/GitHub/TxGIS-Day-2021/")
 
 ###### RASTER ######
@@ -11,11 +12,12 @@ setwd("/Users/alexander/Documents/GitHub/TxGIS-Day-2021/")
 library(raster)
 
 r <- raster(ncol=10, nrow=10)
+r
 ncell(r)
 hasValues(r)
-values(r) <- 1:ncell(r)
+(values(r) <- 1:ncell(r))
 set.seed(0)
-values(r) <- runif(ncell(r))
+values(r) <- runif(ncell(r)) # randomly assign values for each cell
 hasValues(r)
 inMemory(r)
 values(r)[1:10]
@@ -86,6 +88,8 @@ storms_xyz_feature <- system.file("shape/storms_xyz_feature.shp", package="sf") 
    st_read() %>%
    st_as_sf()
 
+storms_xyz_feature
+
 plot(storms_xyz_feature, graticule = TRUE, axes = TRUE)
 
 # or
@@ -152,8 +156,10 @@ ggplot() +
 ###### Slide 43 - ggplot ######
 library(maps)
 
-some_point <- data.frame(longitude = c(-96.30),
-                         latitude  = c(30.63))
+# 30.617800375390576, -96.33658481242809
+
+some_point <- data.frame(longitude = c(-96.3366),
+                         latitude  = c(30.6178))
 
 us <- st_as_sf(map("state", plot = FALSE, fill = TRUE))
 us
@@ -174,7 +180,7 @@ ggplot() +
 ###### Slide 45 - leaflet ######
 library(leaflet)
 
-TxGIS = c("TAMU College Station")
+TxGIS = c("TxGIS - TAMU College Station")
 
 leaflet() %>%
    addProviderTiles("OpenStreetMap.Mapnik") %>% # OpenStreetMap.Mapnik NASAGIBS.ViirsEarthAtNight2012
@@ -319,10 +325,10 @@ plot(x2)
 # writeRaster(x, filename="elev_z12.tif", format="GTiff", overwrite=T)
 
 ###### Slide 64 - Step 4: 20 m elevation polygonized ######
-x2_poly <- spex::polygonize(x2) %>% 
-   group_by() %>%
-   st_union() %>% 
-   st_make_valid()
+# x2_poly <- spex::polygonize(x2) %>% 
+#    group_by() %>%
+#    st_union() %>% 
+#    st_make_valid()
 
 st_area(x2_poly)
 
@@ -336,7 +342,7 @@ bbox = c(left = as.numeric(st_bbox(x2_poly)$xmin-0.05),
 
 map <- get_stamenmap(bbox,
                      maptype = "toner-2011",
-                     zoom = 9)
+                     zoom = 10)
 
 # ggplot() +
    ggmap(map) +
