@@ -303,7 +303,8 @@ proj4string(e) <- st_crs(drive_5min)$proj4string
 # proj4string(e) <- CRS("+proj=utm +zone=10 +datum=WGS84")
 
 ###### Slide 62 - Step 2: Get elevation ######
-x <- get_elev_raster(e, prj=sp::proj4string(e), z=9, src="aws") # 1 to 14
+# x <- get_elev_raster(e, prj=sp::proj4string(e), z=9, src="aws") # 1 to 14
+x <- raster("elev_z12.tif", format="GTiff")
 plot(x)
 
 ###### Slide 63 - Step 3: 20 m elevation mask ######
@@ -315,7 +316,7 @@ x2 <- x
 x2[x2 <= min_value] <- NA; x2[x2 >= (min_value + 20)] <- NA
 plot(x2)
 
-writeRaster(x, filename="elev_z12.tif", format="GTiff", overwrite=T)
+# writeRaster(x, filename="elev_z12.tif", format="GTiff", overwrite=T)
 
 ###### Slide 64 - Step 4: 20 m elevation polygonized ######
 x2_poly <- spex::polygonize(x2) %>% 
