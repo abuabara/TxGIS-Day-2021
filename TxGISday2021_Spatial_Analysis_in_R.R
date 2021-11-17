@@ -38,6 +38,7 @@ r <- round(r)
 values(r)[1:10]
 r <- r == 1
 values(r)[1:10]
+plot(r, main='Raster with 100 cells')
 
 ###### Slide 21 - Raster histogram ######
 hist(s,
@@ -93,8 +94,8 @@ storms_xyz_feature
 plot(storms_xyz_feature, graticule = TRUE, axes = TRUE)
 
 # or
-# ggplot(storms_xyz_feature) +
-#    geom_sf(aes(color = Track))
+ggplot(storms_xyz_feature) +
+   geom_sf(aes(color = Track))
 
 ###### Slide 34 - Polygon example ######
 nc <- system.file("shape/nc.shp", package="sf") %>%
@@ -113,11 +114,14 @@ ggplot(nc) +
 ###### Slide 37 & 38- Dissolve features ######
 nc %>%
    group_by() %>%
-   summarise() %>%
+   summarise() %>% mutate(area = st_area(.))
+
    # plot(graticule = TRUE, axes = TRUE)
    ggplot() +
-   geom_sf(fill = "#4B9CD3",
-           color = "red")
+   geom_sf(
+      fill = NA,
+           color = "red"
+      )
 
 ###### Slide 39 - Filter attributes ######
 nc %>%
@@ -137,7 +141,7 @@ ggplot() +
            aes(fill = NAME)) +
    labs(title = "North Caroline Counties",
         legend = "Selected Counties") +
-   theme_minimal()
+   theme_void()
 
 ###### Slide 42 - ggplot ######
 ggplot() +
@@ -157,9 +161,10 @@ ggplot() +
 library(maps)
 
 # 30.617800375390576, -96.33658481242809
-
-some_point <- data.frame(longitude = c(-96.3366),
-                         latitude  = c(30.6178))
+   # 30.61911144920233, -96.32195445562947
+   
+some_point <- data.frame(longitude = c(-96.3219),
+                         latitude  = c(30.6191))
 
 us <- st_as_sf(map("state", plot = FALSE, fill = TRUE))
 us
