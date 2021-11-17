@@ -4,7 +4,7 @@ Nov 17, 2021, 9:00 AM - 10:45 AM
 
 Online via Zoom | Register for the event (free): https://gisday.tamu.edu/sessions/#!/details/3c74cc0c-06d9-4a9c-9f64-ecb3c077d1a6
 
-Zoom meeting link: TBA
+Zoom meeting link: https://tamu.zoom.us/j/92129389492?pwd=WTNlRDNrWWxPbStCdGM5Wk9JTDY4QT09
 
 ## TxGIS Day 2021 | WORKSHOP | Spatial Analysis in R
 
